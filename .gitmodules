@@ -1,0 +1,6 @@
+[submodule "external/ui-library"]
+	path = external/ui-library
+	url = git@github.com:PingMen/final-project.git
+[submodule "external/utils"]
+	path = external/utils
+	url = git@github.com:PingMen/final-project.git
