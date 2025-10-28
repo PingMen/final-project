@@ -1,4 +1,4 @@
 # final-project
 readme.md v1
 readme.md v2
-#1 issues
+fixes #1 issues
