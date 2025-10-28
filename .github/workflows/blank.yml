@@ -1,0 +1,22 @@
+name: Notify Push to Telegram
+
+on:
+  push:
+    branches:
+      - develop  # можно добавить другие ветки: develop, staging и т.д.
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send Telegram message
+      uses: appleboy/telegram-action@v0.1.1
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          🔄 В ветку ${{ github.ref_name }} отправлены изменения
+          👤 Автор: ${{ github.event.pusher.name }}
+          📝 Коммит: ${{ github.event.head_commit.message }}
+          🔗 Ссылка: ${{ github.event.head_commit.url }}
+          📅 Время: ${{ github.event.repository.updated_at }}
