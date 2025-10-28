@@ -1,1 +1,3 @@
-hello
+requests==2.28.2
+flask>=2.0.0
+pytest

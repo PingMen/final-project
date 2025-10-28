@@ -1,25 +1,20 @@
-name: CI
+name: Notify Release
 
 on:
-  push:
-    branches:
-      - main
-      - develop
+  release:
+    types: [published]
 
 jobs:
-  test:
+  notify:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - name: Send Telegram message
+      uses: appleboy/telegram-action@v0.1.1
       with:
-        python-version: 3.8
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-
-    - name: Run tests
-      run: pytest
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          🚀 Новый релиз: ${{ github.event.release.name }}
+          📝 Описание: ${{ github.event.release.body }}
+          🔗 Ссылка: ${{ github.event.release.html_url }}
+          👤 Автор: ${{ github.event.release.author.login }}
