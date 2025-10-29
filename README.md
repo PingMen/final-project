@@ -6,3 +6,4 @@ readme.md v2
 push dev
 fixes #1 issues
 push developer
+tg bot
